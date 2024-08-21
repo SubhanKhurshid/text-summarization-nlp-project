@@ -1,1 +1,10 @@
-key: value
+TrainingArguments:
+  num_train_epochs: 1               # Keep the number of epochs low for faster execution and testing.
+  warmup_steps: 100                 # Reduced warmup steps from 500 to 100 to minimize memory usage.
+  per_device_train_batch_size: 1    # Batch size of 1 per device is good for low memory environments.
+  weight_decay: 0.01                # Weight decay is kept standard, no change needed.
+  logging_steps: 200                # Increased logging steps to reduce the frequency of logging.
+  evaluation_strategy: steps        # Keep the evaluation strategy at 'steps'.
+  eval_steps: 500                   # Increased eval steps to reduce frequency and avoid memory spikes.
+  save_steps: 1e6                   # Keeping this high to avoid frequent model checkpoint saving.
+  gradient_accumulation_steps: 1    # Keep this low (1) to avoid accumulating gradients that would use more memory.
